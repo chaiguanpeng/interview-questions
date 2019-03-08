@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>hello world</div>
+<script>
+    foo = function () {
+        this.number = 1;
+    };
+    foo.number = 2;
+    foo.prototype.number = 3;
+    bar = new foo();
+
+    console.log(foo.number);    //2
+    console.log(bar.number);    //1
+    console.log(foo.constructor);   //Fun
+    console.log(foo.prototype.constructor); //foo
+    console.log(bar.constructor);   //foo
+    console.log(bar.prototype);     //underfined
+</script>
+</body>
+</html>
