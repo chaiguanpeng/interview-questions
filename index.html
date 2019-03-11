@@ -3,23 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .d1{
+            width: 100px;
+            height: 100px;
+            background: black;
+            margin-bottom: 50px;
+        }
+        .d2{
+            width: 100px;
+            height: 100px;
+            background: gray;
+            margin-bottom: 50px;
+        }
+        .d3{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin-top: 60px;
+        }
+    </style>
 </head>
 <body>
-<div>hello world</div>
+<div class="d1"></div>
+<div class="d2"></div>
+<div class="d3"></div>
 <script>
-    foo = function () {
-        this.number = 1;
-    };
-    foo.number = 2;
-    foo.prototype.number = 3;
-    bar = new foo();
+    for(var j = 0;j < 3;j++){
+        setTimeout(function(){
+            console.log(j)
+        },1000)
+    }
+    console.log('a',j);
 
-    console.log(foo.number);    //2
-    console.log(bar.number);    //1
-    console.log(foo.constructor);   //Fun
-    console.log(foo.prototype.constructor); //foo
-    console.log(bar.constructor);   //foo
-    console.log(bar.prototype);     //underfined
 </script>
 </body>
 </html>
