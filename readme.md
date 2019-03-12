@@ -1,3 +1,12 @@
+#css部分
+##1、BFC
+- 在一个块级排版上下文中，盒子是从包含块顶部开始，垂直的一个接一个的排列的。 相邻两个盒子之间的垂直的间距是被margin属性所决定的，在一个块级排版上下文中相邻的两个块级盒之间的垂直margin是折叠的
+##2、水平竖直居中方案 [链接](https://blog.csdn.net/qq_27576607/article/details/78697812)
+
+
+
+
+
 #js部分
 ##1、new 构造函数发生了哪几个步骤
 - 创建一个新对象；
@@ -43,7 +52,6 @@ Etag和If-None-Match
 
 ```
 ##5、手写防抖函数 [地址](http://www.manongjc.com/article/12402.html)
-
 ```angular2html
 function debounce(func, wait = 0) {
     let timer;
@@ -81,9 +89,8 @@ function debounce(func, wait = 0) {
 - 后序遍历：遍历左子树–>遍历右子树–>访问根;
 - 广度遍历：按照层次一层层遍历;
 
-##7、BFC
-- 在一个块级排版上下文中，盒子是从包含块顶部开始，垂直的一个接一个的排列的。 相邻两个盒子之间的垂直的间距是被margin属性所决定的，在一个块级排版上下文中相邻的两个块级盒之间的垂直margin是折叠的
-##8、浏览器的事件循环 [地址] (https://juejin.im/post/5b7b95206fb9a019bd2463d8#heading-19)
+
+##7、浏览器的事件循环 [地址] (https://juejin.im/post/5b7b95206fb9a019bd2463d8#heading-19)
 
 - 常见的宏任务：
 setTimeout
@@ -95,7 +102,7 @@ messageChannel
 Promise.then()
 mutationObserver
 
-##9、闭包
+##8、闭包
 
 ```angular2html
 for(var j = 0;j < 3;j++){
@@ -105,9 +112,105 @@ for(var j = 0;j < 3;j++){
         },1000)
     })(j)
 }
-```
-##10、mvvm数据绑定
 
-# react部门
-## 1、生命周期
-![生命周期](./img/lifeCycle.jpg)
+```
+
+##9、数组的去重[链接](https://mp.weixin.qq.com/s/AxEa2cYVqrMzWf-D2sTyHw) 
+
+```angular2html
+let arr = [2,4,2,6,4,8,10];
+//1、利用for嵌套for，然后splice去重
+function unique(arr) {
+    for(let i=0;i<arr.length;i++){
+        for(let j=i+1;j<arr.length;j++){
+            if(arr[i] == arr[j]){
+                arr.splice(j,1);
+                j--;
+            }
+        }
+    }
+    return arr
+}
+//2、利用indexOf去重
+function unique1(arr){
+    let array = [];
+    for(let i=0;i<arr.length;i++){
+        if(array.indexOf(arr[i]) === -1){
+            array.push(arr[i])
+        }
+    }
+    return array
+}
+//3、利用对象的属性不能相同的特点进行去重
+function unique2(arr){
+    let array = [];
+    let obj = {};
+    for(let i=0;i<arr.length;i++){
+        if(!obj[arr[i]]){
+            array.push(arr[i]);
+            obj[arr[i]] = 1;
+        }else {
+            obj[arr[i]]++
+        }
+    }
+    return array
+}
+
+```
+
+#react部分
+##1、生命周期
+![生命周期](http://118.25.231.107:8080/lifeCycle.jpg)
+#node部分
+##1、中间件实现(koa)
+
+```angular2html
+function app() {
+
+}
+app.routes = [];
+app.use = function (fn) {
+    app.routes.push(fn)
+};
+
+app.use((ctx,next)=>{
+    console.log(1);
+    next();
+    console.log(2);
+});
+app.use((ctx,next)=>{
+    console.log(3);
+    next();
+    console.log(4);
+});
+
+
+let index= 0;
+function next() {
+    if(app.routes.length ===index) return;
+    let route =  app.routes[index++];
+    console.log(String(route));
+    route({},next);
+}
+next();
+```
+
+##2、generator函数
+
+```angular2html
+//  generator 必须要有*  配合yeild ,碰到yield 就停止，再次调用next就继续走
+// 当遇到return时就迭代完成了
+// 第一个next传递参数是没有效果的
+// 第二次next传递的参数 是第一次yield的返回值
+function * thing() {
+    let a = yield 1;
+    console.log(a);
+    let b = yield 2;
+    console.log(b);
+    return b;
+}
+let it = thing();
+console.log(it.next(111));
+console.log(it.next(2000));
+console.log(it.next('4000'));
+```
