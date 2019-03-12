@@ -83,7 +83,8 @@ function debounce(func, wait = 0) {
 
 ##7、BFC
 - 在一个块级排版上下文中，盒子是从包含块顶部开始，垂直的一个接一个的排列的。 相邻两个盒子之间的垂直的间距是被margin属性所决定的，在一个块级排版上下文中相邻的两个块级盒之间的垂直margin是折叠的
-##8、浏览器的事件循环
+##8、浏览器的事件循环 [地址] (https://juejin.im/post/5b7b95206fb9a019bd2463d8#heading-19)
+
 - 常见的宏任务：
 setTimeout
 setImmediate(只有ie支持)
@@ -93,3 +94,20 @@ messageChannel
 - 常见的微任务：
 Promise.then()
 mutationObserver
+
+##9、闭包
+
+```angular2html
+for(var j = 0;j < 3;j++){
+    (function(j){
+        setTimeout(function(){
+            console.log(j)
+        },1000)
+    })(j)
+}
+```
+##10、mvvm数据绑定
+
+# react部门
+## 1、生命周期
+![生命周期](./img/lifeCycle.jpg)

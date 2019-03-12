@@ -1,6 +1,7 @@
 for(var j = 0;j < 3;j++){
-    setTimeout(function(){
-        console.log(j)
-    },1000)
+    (function(j){
+        setTimeout(function(){
+            console.log(j)
+        },1000)
+    })(j)
 }
-console.log('a',j);
